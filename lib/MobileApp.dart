@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:notepad_core/notepad_core.dart';
 
+import 'NotepadDetailPage.dart';
+
 class MobileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -100,6 +102,11 @@ class _MobileHomePageState extends State<_MobileHomePage> {
             ListTile(
               title: Text('${_scanResults[index].name}(${_scanResults[index].rssi})'),
               subtitle: Text(_scanResults[index].deviceId),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => NotepadDetailPage(_scanResults[index]),
+                ));
+              },
             ),
         separatorBuilder: (context, index) => Divider(),
         itemCount: _scanResults.length,
