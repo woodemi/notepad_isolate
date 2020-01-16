@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notepad_core/notepad_core.dart';
 
+import 'notepad_isolate.dart';
+
 class NotepadDetailPage extends StatefulWidget {
   final scanResult;
 
@@ -59,8 +61,24 @@ class _NotepadDetailPageState extends State<NotepadDetailPage> implements Notepa
       appBar: AppBar(
         title: Text('NotepadDetailPage'),
       ),
-      body: Center(
-        child: Text('syncPointers ${_syncPointers.length}'),
+      body: Column(
+        children: <Widget>[
+          RaisedButton(
+            child: Text('promoteToForeground'),
+            onPressed: () {
+              NotepadIsolatePlugin.promoteToForeground();
+            },
+          ),
+          RaisedButton(
+            child: Text('demoteToBackground'),
+            onPressed: () {
+              NotepadIsolatePlugin.demoteToBackground();
+            },
+          ),
+          Center(
+            child: Text('syncPointers ${_syncPointers.length}'),
+          ),
+        ],
       ),
     );
   }
